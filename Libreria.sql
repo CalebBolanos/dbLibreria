@@ -8,17 +8,17 @@ use libreria;
 /*===============tablas============================================================*/
 create table autor(
   idAutor int not null,
-  nombres varchar(20) not null,
-  paterno varchar(15) not null,
-  materno varchar(15) not null,
+  nombres varchar(50) not null,
+  paterno varchar(50) not null,
+  materno varchar(50) not null,
   primary key (idAutor)
 );
 
 create table editorial(
   idEditorial int not null,
-  nombre varchar(15) not null,
+  nombre varchar(50) not null,
   telefono int not null,
-  sitioweb varchar(20) not null,
+  sitioweb varchar(50) not null,
   primary key (idEditorial)
 );
 
@@ -30,21 +30,21 @@ create table paginas(
 
 create table correo(
   idCorreo int not null,
-  correo varchar(35) not null,
+  correo varchar(50) not null,
   primary key (idCorreo)
 );
 
 create table idioma(
   idIdioma int not null,
-  idioma varchar(10) not null,
+  idioma varchar(20) not null,
   primary key (idIdioma)
 );
 
 create table cliente(
   idCliente int not null,
-  nombres varchar(20) not null,
-  paterno varchar(10)  not null,
-  materno varchar(10)  not null,
+  nombres varchar(50) not null,
+  paterno varchar(50)  not null,
+  materno varchar(50)  not null,
   idCorreo int not null,
   primary key (idCliente),
   foreign key (idCorreo) references correo(idCorreo)
@@ -52,9 +52,9 @@ create table cliente(
 
 create table datos(
   idDatos int not null,
-  nombre varchar(20) not null,
+  nombre varchar(50) not null,
   anio int not null,
-  portada varchar(20) not null,
+  portada varchar(50) not null,
   idIdioma int not null,
   primary key (idDatos),
   foreign key (idIdioma) references idioma(idIdioma)
@@ -63,7 +63,7 @@ create table datos(
 create table contrasena(
   idContraseña int not null,
   idCliente int not null,
-  contrasena nvarchar(16) not null,
+  contrasena nvarchar(50) not null,
   primary key (idContraseña),
   foreign key (idCliente) references cliente(idCliente)
 );
@@ -90,9 +90,9 @@ create table libro(
 create table audiolibro(
   sku int not null,
   duracion int not null,
-  narradorNombres varchar(20) not null,
-  narradorPaterno varchar(15) not null,
-  narradorMaterno varchar(15) not null,
+  narradorNombres varchar(50) not null,
+  narradorPaterno varchar(50) not null,
+  narradorMaterno varchar(50) not null,
   idDatos int not null,
   primary key (sku),
   foreign key (idDatos) references datos(idDatos)
@@ -101,7 +101,7 @@ create table audiolibro(
 create table ebook(
   sku int not null,
   anioDigitalizacion int not null,
-  formato varchar(10) not null,
+  formato varchar(50) not null,
   idDatos int not null,
   idPaginas int not null,
   primary key (sku),
