@@ -25,7 +25,7 @@ create table autor(
 create table editorial(
   idEditorial int not null primary key,
   nombre varchar(50) not null,
-  telefono int not null,
+  telefono varchar(20) not null,
   sitioweb varchar(50) not null
 );
 
