@@ -8,30 +8,30 @@ use libreria;
 /*===============tablas============================================================*/
 create table cliente(
   idCliente int not null primary key,
-  nombres int not null,
-  paterno int not null,
-  materno int not null,
-  correo int not null,
-  contrasena int not null
+  nombres varchar(50) not null,
+  paterno varchar(50) not null,
+  materno varchar(50) not null,
+  correo varchar(50) not null,
+  contrasena nvarchar(50) not null
 );
 
 create table autor(
   idAutor int not null primary key,
-  nombres int not null,
-  paterno int not null,
-  materno int not null
+  nombres varchar(50) not null,
+  paterno varchar(50) not null,
+  materno varchar(50) not null
 );
 
 create table editorial(
   idEditorial int not null primary key,
-  nombre int not null,
+  nombre varchar(50) not null,
   telefono int not null,
-  sitioweb int not null
+  sitioweb varchar(50) not null
 );
 
 create table idioma(
   idIdioma int not null primary key,
-  idioma int not null
+  idioma varchar(15) not null
 );
 
 create table formato(
@@ -42,9 +42,9 @@ create table formato(
 create table datos(
   idDatos int not null primary key,
   idIdioma int not null,
-  nombre int not null,
+  nombre varchar(50) not null,
   anio int not null,
-  portada int not null,
+  portada varchar(50) not null,
   foreign key (idIdioma) references idioma(idIdioma)
 );
 
@@ -69,9 +69,9 @@ create table audiolibro(
   sku int not null primary key,
   idDatos int not null,
   duracion int not null,
-  narradornombres int not null,
-  narradorpaterno int not null,
-  narradormaterno int not null,  
+  narradornombres varchar(50) not null,
+  narradorpaterno varchar(50) not null,
+  narradormaterno varchar(50) not null,  
   foreign key (idDatos) references datos(idDatos)
 );
 
