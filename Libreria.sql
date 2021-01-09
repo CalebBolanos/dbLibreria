@@ -45,6 +45,7 @@ create table datos(
   nombre varchar(50) not null,
   anio int not null,
   portada varchar(50) not null,
+  precio float not null,
   foreign key (idIdioma) references idioma(idIdioma)
 );
 
