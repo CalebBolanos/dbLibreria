@@ -26,7 +26,7 @@ create table editorial(
   idEditorial int not null primary key,
   nombre varchar(50) not null,
   telefono varchar(20) not null,
-  sitioweb varchar(50) not null
+  sitioweb varchar(300) not null
 );
 
 create table idioma(
