@@ -79,9 +79,10 @@ create table audiolibro(
 create table ebook(
   sku varchar(50) not null primary key,
   idDatos int not null,
-  skuLibro varchar(50) not null,
+  skuLibro varchar(50),
   idFormato int not null,
   anioDigitalizacion int not null,
+  precio decimal(10, 2) not null,
   foreign key (idDatos) references datos(idDatos),
   foreign key (skuLibro) references libro(sku),
   foreign key (idFormato) references formato(idFormato)
@@ -272,7 +273,7 @@ insert into libro values("9786073175845", 8, 1, 50);
 insert into escribe values(8, "9786073175845");
 insert into edita values(8, 1, 304);
 
-insert into datos values(9, 1, "CHOCOLATE", 2015,
+insert into datos values(9, 1, "SABOR A CHOCOLATE", 2015,
 "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_285601.jpg",
 159);
 insert into libro values("9786073136198", 9, 3, 50);
@@ -428,6 +429,12 @@ insert into libro values("sku", idDatos, idEditorial, disp);
 insert into escribe values(idAutor, "sku");
 insert into edita values(idDatos, idEditorial, pag);
 */
+
+select * from datos;
+select * from formato;
+
+
+insert into ebook values("70bf50cb-5ec7-4b29-8491-ba720617c79d", 1, "9786073199445", 1, "2012", 79);
 
 /*===============views=============================================================*/
 
