@@ -59,7 +59,7 @@ create table edita(
 );
 
 create table libro(
-  sku int not null primary key,
+  sku varchar(50) not null primary key,
   idDatos int not null,
   edicion int not null,
   disponibilidad int not null,
@@ -67,7 +67,7 @@ create table libro(
 );
 
 create table audiolibro(
-  sku int not null primary key,
+  sku varchar(50) not null primary key,
   idDatos int not null,
   duracion int not null,
   narradornombres varchar(50) not null,
@@ -77,9 +77,9 @@ create table audiolibro(
 );
 
 create table ebook(
-  sku int not null primary key,
+  sku varchar(50) not null primary key,
   idDatos int not null,
-  skuLibro int not null,
+  skuLibro varchar(50) not null,
   idFormato int not null,
   anioDigitalizacion int not null,
   foreign key (idDatos) references datos(idDatos),
@@ -89,7 +89,7 @@ create table ebook(
 
 create table escribe(
   idAutor int not null,
-  sku int not null,
+  sku varchar(50) not null,
   primary key (idAutor, sku),
   foreign key (idAutor) references autor(idAutor),
   foreign key (sku) references libro(sku)
@@ -97,7 +97,7 @@ create table escribe(
 
 create table redacta(
   idAutor int not null,
-  sku int not null,
+  sku varchar(50) not null,
   primary key (sku, idAutor),
   foreign key (sku) references audiolibro(sku),
   foreign key (idAutor) references autor(idAutor)
@@ -105,7 +105,7 @@ create table redacta(
 
 create table consulta(
   idCliente int not null,
-  sku int not null,
+  sku varchar(50) not null,
   primary key (idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references libro(sku)
@@ -113,7 +113,7 @@ create table consulta(
 
 create table compraAudiolibro(
   idCliente int not null,
-  sku int not null,
+  sku varchar(50) not null,
   primary key (idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references audiolibro(sku)
@@ -121,7 +121,7 @@ create table compraAudiolibro(
 
 create table compraEbook(
   idCliente int not null,
-  sku int not null,
+  sku varchar(50) not null,
   primary key (idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references ebook(sku)
@@ -208,6 +208,14 @@ insert into autor values(28, "Juan Antonio", "Razo", "García");
 insert into autor values(29, "Martin", "Gardner", "");
 insert into autor values(30, "Raymond", "Blum", "");
 
+insert into formato values(1,'EPUB');
+insert into formato values(2,'MOBI');
+insert into formato values(3,'AZW');
+insert into formato values(4,'AZW3');
+insert into formato values(5,'IBA');
+insert into formato values(6,'FB2');
+insert into formato values(7,'DJVU');
+insert into formato values(8,'PDF');
 
 /*===============views=============================================================*/
 
