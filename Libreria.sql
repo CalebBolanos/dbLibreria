@@ -183,6 +183,7 @@ insert into editorial values (7,'MONTENA','S/N','https://www.megustaleer.mx/edit
 insert into editorial values (8,'MARTINEZ ROCA MEXICO','S/N','https://www.planetadelibros.com/editorial/ediciones-martinez-roca/11');
 insert into editorial values (9,'SELECTOR','51340570 ','https://selector.com.mx/');
 insert into editorial values (10,'EDITORIAL HIPERLIBRO','55462037','https://editorialhiperlibro.com/');
+insert into editorial values (11,'Brilliance Audio','S/N','https://www.brilliancepublishing.com/');
 
 insert into autor values(1, "Paulo", "Coelho", "de Souza");
 insert into autor values(2, "Peniley", "Ramírez", "");
@@ -214,6 +215,10 @@ insert into autor values(27, "Luis", "González", "Aspuru");
 insert into autor values(28, "Juan Antonio", "Razo", "García");
 insert into autor values(29, "Martin", "Gardner", "");
 insert into autor values(30, "Raymond", "Blum", "");
+
+insert into autor values(31, "Victoria", "Blue", "");
+insert into autor values(32, "Taylor", "Adams", "");
+insert into autor values(33, "Marion", "Debruyne", "");
 
 insert into formato values(1,'EPUB');
 insert into formato values(2,'MOBI');
@@ -430,14 +435,105 @@ insert into escribe values(idAutor, "sku");
 insert into edita values(idDatos, idEditorial, pag);
 */
 
-select * from datos;
-select * from formato;
-
-
 insert into ebook values("70bf50cb-5ec7-4b29-8491-ba720617c79d", 1, "9786073199445", 1, "2012", 79);
+insert into ebook values("238d50bf-8dc2-39e7-848d-de33e8ad7b8b", 2, "9786073199421", 1, "2020", 179);
+insert into ebook values("e1c98eb7-bfe1-3584-9b0a-a58356a3e2d1", 3, "9788417338589", 1, "2020", 149);
+insert into ebook values("452382a5-3e63-3468-83fb-a8bc48665869", 4, "9786075690254", 1, "2020", 139);
+insert into ebook values("6df1b72e-d074-3583-bd73-050a6a687f1c", 6, "9786077479796", 1, "2020", 169);
+insert into ebook values("f8629543-9a65-31e9-8912-df6cecb5ef89", 7, "9786073112444", 1, "2020", 89);
+insert into ebook values("8b4b608d-d2ae-4557-9bbc-48416a44caa2", 8, "9786073175845", 1, "2019", 79);
+insert into ebook values("5720b89e-b0b5-39b1-9a72-b1962638ee0b", 9, "9786073136198", 1, "2020", 69);
+insert into ebook values("58a1aad0-8685-38b2-ae0c-0378e56e9ab3", 10, "9786073143325", 1, "2017", 149);
+insert into ebook values("da9b6d67-0010-36fd-b7a8-38df94f0d25c",11,"9786073143325",1,2016,109);
+insert into ebook values("775224b9-4e42-3dbe-81fe-706595645a3a",12,"9786074805222",1,2013,65);
+insert into ebook values("7230cf05-06de-3f63-9b19-ac7ccb896a99",13,"9786073167116",1,2018,129);
+insert into ebook values("f1f087a1-c068-3456-acaf-3e5c9604c65c",14,"9786073197878",1,2020,159);
+insert into ebook values("f8def83d-5e1a-3025-af80-e93afc5df6eb",15,"9786071131690",1,2014,35);
+insert into ebook values("c98fd9ec-4011-34aa-a676-56e5e64fba10",19,"9786073157483",1,2017,149);
+insert into ebook values("a50199a2-a7f8-35a6-954d-64baf5559cd8",20,"9786073154772",1,2020,119);
+insert into ebook values("b3a57ae3-4528-3ce8-abc7-2a208da95628",21,"9786073196611",1,2020,119);
+insert into ebook values("40401fd3-b8cc-486d-bee1-9d85988d1322",22,"9788427035904",1,2020,129);
+insert into ebook values("8a875a86-ec73-3738-bf85-29e5f8fbc018",24,"9786070701412",1,2020,79);
+insert into ebook values("0848082f-3d9b-3c15-9199-0075baa33a93",25,"9786074534535",1,2020,99);
+insert into ebook values("6ead92c3-26a7-37d2-b66b-f221c0104e2f",26,"9786074534023",1,2020,88);
+insert into ebook values("54464cf7-a394-3682-abed-d2bbde82ff7f",27,"9786074536461",1,2020,227);
+
+-- insert into ebook values("skuEbook", idDatos, "skuLibro", idFormato, "añoDig", precioEbook);
+
+
+insert into datos values(31, 2, "Misadventures at City Hall", 2020, "https://kbimages1-a.akamaihd.net/Images/60463135-66f3-4904-bcfc-10c7d29d082c/300/300/False/image.jpg", precio);
+insert into audiolibro values("9781799744917", 31, 356, "Savannah", "Richards", "");
+insert into redacta values(31, "9781799744917");
+insert into edita values(31, 11, 0);
+
+/** 
+insert into datos values(idDatos, idIdioma, "titulo", 2020, "portada", precio);
+insert into audiolibro values("sku", idDatos, duracion, "narrador", "paterno", "materno");
+insert into redacta values(idAutor, "sku");
+insert into edita values(idDatos, idEditorial, pag);
+**/
+
+
+/*===============selects=============================================================*/
 
 /*===============views=============================================================*/
 
+/*View para mostrar el nombre, la edicion y editorial de los 
+libros con precio menor a 500*/
+create view LibroPrecio as select d.nombre as "Libro", 
+l.edicion as "Edicion", e.nombre as "Editorial",
+d.precio as "Precio" from editorial e, edita ed, datos d,
+libro l where l.idDatos = d.idDatos and d.idDatos = ed.idDatos
+and e.idEditorial = ed.idEditorial and d.precio < 500 order by Precio;
+
+/*View para mostrar cuantos libros cuestan menos de 500 y 
+cuanto seria el total en caso de comprarlos*/
+create view CuentaLi as select count(l.sku) as "Numero de libros",
+sum(d.precio) as "Precio total" from editorial e, edita ed, 
+datos d, libro l where l.idDatos = d.idDatos and 
+d.idDatos = ed.idDatos and e.idEditorial = ed.idEditorial 
+and d.precio < 500;
+
+/*View para mostrar el autor, el nombre del libro y la 
+duracion de los audiolibtos que salieron despues de 20010*/
+create view DuraAudi as select d.nombre as "Audiolibro",
+a.nombres as "Autor", ad.duracion as "Duracion" from autor a,
+redacta r, audiolibro ad, datos d where d.idDatos = ad.idDatos
+and ad.sku = r.sku and r.idAutor = a.idAutor and d.anio > 2010
+order by Duracion;
+
+/*View para mostrar cuantos audiolibros hay en español asi 
+como su duracion total*/
+create view AudiIdio as select count(ad.sku) as "Numero de audios",
+i.idioma as "Idioma", sum(ad.duracion) from idioma i, datos d,
+audiolibro ad where i.idIdioma = d.idIdioma and 
+d.idDatos = ad.idDatos and i.idioma = "Español" group by 2;
+
+/*View para mostrar el nombre de libro, idioma y numero de pags
+que fueron digitalizados despues de 2010*/
+create view DigiEb as select d.nombre as "Nombre ebook",
+i.idioma as "Idioma", eb.anioDigitalizacion as "AnioDigita",
+ed.numeroPaginas as "Paginas" from edita ed, datos d, idioma i,
+ebook eb, libro l where eb.skuLibro = l.sku and l.idDatos = d.idDatos
+and i.idIdioma = d.idIdioma and eb.anioDigitalizacion > 2010
+order by 1;
+
+/*View para mostrar cuantos ebook y el numero da paginas totales
+existen en formato MOBI con precio menor a 200*/
+create view NumDigi as select f.tipoformato as "Formato",
+count(eb.sku) as "Num de ebook's", sum(e.numeroPaginas) as
+"Numero de pags total" from formato f, ebook eb, datos d, 
+edita e, libro l where f.idFormato = eb.idFormato and
+eb.skuLibro = l.sku and l.idDatos = d.idDatos and
+d.idDatos = e.idDatos and d.precio < 200 
+and f.tipoformato = "MOBI" group by 1;
+
+/*consulta usando ||group by|| para mostrar el numero de libros 
+fisicos que tiene cada editorial*/
+select e.nombre as "Editorial", count(l.sku) as "Libros"
+from editorial e, libro l, datos d, edita ed where
+l.idDatos = d.idDatos and d.idDatos = ed.idDatos 
+and e.idEditorial = ed.idEditorial group by 1;
 /*===============stored procedures=================================================*/
 drop procedure if exists spRegistrarCliente;
 delimiter |
