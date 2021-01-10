@@ -44,7 +44,7 @@ create table datos(
   idIdioma int not null,
   nombre varchar(50) not null,
   anio int not null,
-  portada blob,
+  portada varchar(500) not null,
   precio decimal(10, 2) not null,
   foreign key (idIdioma) references idioma(idIdioma)
 );
@@ -221,7 +221,7 @@ select * from autor;
 select * from editorial;
 select LOAD_FILE('alq.jpg');
 
-insert into datos values(1, 1, "EL ALQUIMISTA", 2020, null, 399);
+insert into datos values(1, 1, "EL ALQUIMISTA", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073199445.jpg", 399);
 insert into libro values("9786073199445", 1, 1, 50);
 #para asignarle autor al libro
 insert into escribe values(1, "9786073199445");
@@ -229,6 +229,7 @@ insert into escribe values(1, "9786073199445");
 insert into edita values(1, 1, 208);
 
 select * from datos;
+select portada from datos;
 
 /*===============views=============================================================*/
 
