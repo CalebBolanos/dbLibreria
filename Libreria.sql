@@ -42,7 +42,7 @@ create table formato(
 create table datos(
   idDatos int not null primary key,
   idIdioma int not null,
-  nombre varchar(50) not null,
+  nombre varchar(100) not null,
   anio int not null,
   portada varchar(500) not null,
   precio decimal(10, 2) not null,
@@ -114,6 +114,9 @@ create table consulta(
 create table compraAudiolibro(
   idCliente int not null,
   sku varchar(50) not null,
+  cantidad int not null,
+  total decimal(10, 2) not null,
+  fechaCompra date not null,
   primary key (idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references audiolibro(sku)
@@ -122,6 +125,9 @@ create table compraAudiolibro(
 create table compraEbook(
   idCliente int not null,
   sku varchar(50) not null,
+  cantidad int not null,
+  total decimal(10, 2) not null,
+  fechaCompra date not null,
   primary key (idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references ebook(sku)
@@ -217,9 +223,6 @@ insert into formato values(6,'FB2');
 insert into formato values(7,'DJVU');
 insert into formato values(8,'PDF');
 
-select * from autor;
-select * from editorial;
-select LOAD_FILE('alq.jpg');
 
 insert into datos values(1, 1, "EL ALQUIMISTA", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073199445.jpg", 399);
 insert into libro values("9786073199445", 1, 1, 50);
@@ -228,8 +231,203 @@ insert into escribe values(1, "9786073199445");
 #para asignarle editorial y numero de paginas al libro
 insert into edita values(1, 1, 208);
 
-select * from datos;
-select portada from datos;
+insert into datos values(2, 1, "LOS MILLONARIOS DE LA GUERRA", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073199421.jpg", 299);
+insert into libro values("9786073199421", 2, 1, 50);
+insert into escribe values(2, "9786073199421");
+insert into edita values(2, 1, 368);
+
+insert into datos values(3, 1, "COCINA EN CASA CON MARTIN BERASATEGUI", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9788417338589.jpg", 599);
+insert into libro values("9788417338589", 3, 1, 50);
+insert into escribe values(3, "9788417338589");
+insert into edita values(3, 1, 368);
+
+insert into datos values(4, 1, "LOS 7 HABITOS DE LA GENTE ALTAMENTE EFECTIVA TD", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786075690254.jpg", 472);
+insert into libro values("9786075690254", 4, 2, 50);
+insert into escribe values(4, "9786075690254");
+insert into edita values(4, 2, 472);
+
+insert into datos values(5, 1, "COMO SER UN EXPLORADOR DEL MUNDO", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786075690186.jpg", 229);
+insert into libro values("9786075690186", 5, 2, 50);
+insert into escribe values(5, "9786075690186");
+insert into edita values(5, 2, 208);
+
+insert into datos values(6, 1, "EN DEFENSA DE LA SOCIEDAD ABIERTA", 2020,
+"https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786077479796.jpg",
+249);
+insert into libro values("9786077479796", 6, 2, 50);
+insert into escribe values(6, "9786077479796");
+insert into edita values(6, 2, 208);
+
+insert into datos values(7, 1, "CUJO", 2012,
+"https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_72965.jpg",
+319);
+insert into libro values("9786073112444", 7, 3, 50);
+insert into escribe values(7, "9786073112444");
+insert into edita values(7, 3, 400);
+
+insert into datos values(8, 1, "CUIDAME DE TI", 2019,
+"https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_34059.jpg",
+299);
+insert into libro values("9786073175845", 8, 1, 50);
+insert into escribe values(8, "9786073175845");
+insert into edita values(8, 1, 304);
+
+insert into datos values(9, 1, "CHOCOLATE", 2015,
+"https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_285601.jpg",
+159);
+insert into libro values("9786073136198", 9, 3, 50);
+insert into escribe values(9, "9786073136198");
+insert into edita values(9, 3, 160);
+
+insert into datos values(10, 1, "MEXICO RACISTA", 2016,
+"https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_291182.jpg",
+229);
+insert into libro values("9786073143325", 10, 1, 50);
+insert into escribe values(10, "9786073143325");
+insert into edita values(10, 1, 192);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(11,1,'UNA HISTORIA ORAL DE LA INFAMIA',2016,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_289916.jpg',189);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786073141574',11,1,30);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(11,'9786073141574');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(11,1,232);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(12,1,'Tiaztlán',2013,'https://kbimages1-a.akamaihd.net/Images/7d6ae5ca-c52c-4757-b7db-e80be3eedd3a/300/300/False/image.jpg',449);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786074805222',12,1,35);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(12,'9786074805222');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(12,4,672);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(13,1,'ESA LUZ QUE NOS DESLUMBRA',2018,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_26109.jpg',249);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786073167116',13,1,14);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(13,'9786073167116');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(13,1,304);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(14,1,'HOMBRES G. NUNCA HEMOS SIDO LOS GUAPOS DEL BARRIO',2020,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073197878.jpg',399);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786073197878',14,1,10);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(14,'9786073197878');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(14,5,512);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(15,1,'DIARIO EMPRENDEDOR',2014,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_92550.jpg',319);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786071131690',15,1,2);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(15,'9786071131690');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(15,5,320);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(16,1,'THE LEAGUE OF EXTRAORDINARY GENTLEMEN Nº 01 (EDICION TRAZADO)',2018,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9788416543625.jpg',398);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9788416543625',16,1,2);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(16,'9788416543625');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(16,6,192);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(17,1,'TCONAN Y RED SONJA',2017,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9788416693160_1.jpg',398);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9788416693160',17,1,42);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(17,'9788416693160');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(17,6,104);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(18,1,'LEONARDO DA VINCI',2005,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_11057.jpg',59);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9788467413717',18,1,2);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(18,'9788467413717');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(18,6,100);
+
+-- insert into datos values(iddatos,ididioma,nombre,año,portada,precio);
+insert into datos values(19,1,'LA SONATA DEL DIABLO',2017,'https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_15474.jpg',379);
+-- insert into libro values(sku,iddatos,edcion,disponibilidad);
+insert into libro values('9786073157483',19,2,200);
+-- insert into escribe values(idautor,sku);
+insert into escribe values(19,'9786073157483');
+-- insert into edita values(iddatos,ideditorial,numpagina,);
+insert into edita values(19,7,432);
+
+insert into datos values(20, 1, "Contra las estrellas", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073154772.jpg", 109);
+insert into libro values("9786073154772", 20, 7, 50);
+insert into escribe values(20, "9786073154772");
+insert into edita values(20, 7,416);
+
+insert into datos values(21, 1, "Nuestro ultimo verano", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786073196611.jpg", 299);
+insert into libro values("9786073196611", 21, 7, 50);
+insert into escribe values(21, "9786073196611");
+insert into edita values(21, 7, 432);
+
+insert into datos values(22, 1, "555 joyas de la sabiduria", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_64971.jpg", 398);
+insert into libro values("9788427035904", 22, 8, 50);
+insert into escribe values(22, "9788427035904");
+insert into edita values(22, 8, 256);
+
+insert into datos values(23, 1, "DE LO PEOR, LO MEJOR: LOS CONSEJOS DE AURON", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/9/7/9786070730931.jpg", 49);
+insert into libro values("9786070730931", 23, 8, 50);
+insert into escribe values(23, "9786070730931");
+insert into edita values(23, 8, 160);
+
+insert into datos values(24, 1, "Un dulce sabor a muerte", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_212759.jpg", 29);
+insert into libro values("9786070701412", 24, 8, 50);
+insert into escribe values(24, "9786070701412");
+insert into edita values(24, 8, 196);
+
+insert into datos values(25, 1, "Carta al padre", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_15689.jpg", 99);
+insert into libro values("9786074534535", 25, 9, 50);
+insert into escribe values(25, "9786074534535");
+insert into edita values(25, 9, 96);
+
+insert into datos values(26, 1, "Porfavor sea feliz en pareja", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_294831.jpg", 159);
+insert into libro values("9786074534023", 26, 9, 50);
+insert into escribe values(26, "9786074534023");
+insert into edita values(26, 9,168);
+
+insert into datos values(27, 1, "El talento", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_5886616_2019-07-04_07_07_36_000.jpg", 295);
+insert into libro values("9786074536461", 27, 9, 50);
+insert into escribe values(27, "9786074536461");
+insert into edita values(27, 9, 208);
+
+insert into datos values(28, 1, "Una historia puede cambiar tu vida", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_68716.jpg",269);
+insert into libro values("9786079043117", 28, 10, 50);
+insert into escribe values(28, "9786079043117");
+insert into edita values(28, 10, 382);
+
+insert into datos values(29, 1, "Matematicas para divertirse", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_165802.jpg", 139);
+insert into libro values("9786079534806", 29, 10, 50);
+insert into escribe values(29, "9786079534806");
+insert into edita values(29, 10, 158);
+
+insert into datos values(30, 1, "Festival de ingenio matematico", 2020, "https://cdn.gandhi.com.mx/media/catalog/product/cache/1/image/370x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_1165_1_275736.jpg", 89);
+insert into libro values("9786079043230", 30, 10, 50);
+insert into escribe values(30, "9786079043230");
+insert into edita values(30, 10, 96);
+
+/*
+insert into datos values(idDatos, idIdioma, "titulo", 2020, "portada", precio);
+insert into libro values("sku", idDatos, idEditorial, disp);
+insert into escribe values(idAutor, "sku");
+insert into edita values(idDatos, idEditorial, pag);
+*/
 
 /*===============views=============================================================*/
 
@@ -252,4 +450,56 @@ begin
     select msj, idCli;
 end; |
 delimiter ;
-#call spRegistrarCliente("Caleb", "Bolaños", "Ramos", "bolanos.c@hotmail.com", "contra1234");
+call spRegistrarCliente("Caleb", "Bolaños", "Ramos", "bolanos.c@hotmail.com", "contra1234");
+
+
+drop procedure if exists spIniciarSesion;
+delimiter |
+create procedure spIniciarSesion(in usr varchar(50), contra nvarchar(50))
+begin
+	declare existe, idCli int;
+    declare msj nvarchar(200);
+    
+    set existe = (select count(*) from cliente where correo = usr and contrasena = md5(contra));
+    if(existe = 1) then
+		set idCli = (select idCliente from cliente where correo = usr);
+        set msj = "ok";
+    else
+		set msj = "Usuario o contraseña incorrecta";
+	end if;
+    select msj, idCli;
+end; |
+delimiter ;
+
+call spIniciarSesion("bolanos.c@hotmail.com", "contra1234");
+
+#sp para calcular la compra de varios ebooks en especifico
+drop procedure if exists spComprarEbook;
+delimiter |
+create procedure spComprarEbook(in idCli int, idSku varchar(50), in cantidad int)
+begin
+	declare existe, existeCliente int;
+    declare precio, total decimal(10,2);
+    declare msj nvarchar(200);
+    
+    set existeCliente = (select count(*) from cliente where idCliente = idCli); 
+    if(existeCliente = 1) then
+		#para verificar si el ebook existe
+		set existe = (select count(*) from ebook where sku = idSku);
+		if(existe = 1) then
+			set precio = (select d.precio from ebook e, datos d where e.idDatos = d.idDatos and e.sku =idSku);
+			set total = precio * cantidad;
+			insert into compraEbook values(idCli, idSku, cantidad, total, CURDATE());
+			set msj = "Compra exitosa";
+		else
+			set msj = "El ebook que quieres comprar no existe";
+		end if;
+    else
+		set msj = "El cliente no existe";
+    end if;
+
+    select msj, idCli;
+end; |
+delimiter ;
+
+call spComprarEbook(31, "9786073199445", 1);
