@@ -44,7 +44,7 @@ create table datos(
   idIdioma int not null,
   nombre varchar(50) not null,
   anio int not null,
-  portada varchar(50) not null,
+  portada blob,
   precio decimal(10, 2) not null,
   foreign key (idIdioma) references idioma(idIdioma)
 );
@@ -216,6 +216,19 @@ insert into formato values(5,'IBA');
 insert into formato values(6,'FB2');
 insert into formato values(7,'DJVU');
 insert into formato values(8,'PDF');
+
+select * from autor;
+select * from editorial;
+select LOAD_FILE('alq.jpg');
+
+insert into datos values(1, 1, "EL ALQUIMISTA", 2020, null, 399);
+insert into libro values("9786073199445", 1, 1, 50);
+#para asignarle autor al libro
+insert into escribe values(1, "9786073199445");
+#para asignarle editorial y numero de paginas al libro
+insert into edita values(1, 1, 208);
+
+select * from datos;
 
 /*===============views=============================================================*/
 
