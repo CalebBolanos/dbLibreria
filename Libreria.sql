@@ -654,10 +654,10 @@ l.idDatos = d.idDatos and d.idDatos = ed.idDatos
 and e.idEditorial = ed.idEditorial group by 1;
 
 /*2: consulta usando ||count|| para mostrar cuantos libros y 
-audiolibros existen cada uno de los idiomas*/
+ebook existen cada uno de los idiomas*/
 select i.idioma as "Idioma", count(l.sku) as "Libro", 
-count(ad.sku) as "Audiolibros" from idioma i, datos d, audiolibro ad,
-libro l where i.idIdioma = d.idIdioma and d.idDatos = ad.idDatos
+count(eb.sku) as "Ebook" from idioma i, datos d, ebook eb,
+libro l where i.idIdioma = d.idIdioma and l.sku = eb.skuLibro
 and d.idDatos = l.idDatos group by 1;
 
 /*3: consulta usando ||sum|| para mostrar cuantos libros, paginas
@@ -766,7 +766,7 @@ i.idioma as "Idioma", eb.anioDigitalizacion as "AnioDigita",
 ed.numeroPaginas as "Paginas" from edita ed, datos d, idioma i,
 ebook eb, libro l where eb.skuLibro = l.sku and l.idDatos = d.idDatos
 and i.idIdioma = d.idIdioma and eb.anioDigitalizacion > 2010
-order by 1;
+group by 1 order by 1;
 
 /*View para mostrar cuantos ebook y el numero da paginas totales
 existen en formato MOBI con precio menor a 200*/
