@@ -215,11 +215,37 @@ insert into autor values(27, "Luis", "González", "Aspuru");
 insert into autor values(28, "Juan Antonio", "Razo", "García");
 insert into autor values(29, "Martin", "Gardner", "");
 insert into autor values(30, "Raymond", "Blum", "");
-
 insert into autor values(31, "Victoria", "Blue", "");
 insert into autor values(32, "Taylor", "Adams", "");
 insert into autor values(33, "Marion", "Debruyne", "");
-
+insert into autor values(34, "John", "Saul", "");
+insert into autor values(35, "Susan", "Mallery", "");
+insert into autor values(36, "Jorge", "Baradit", "");
+insert into autor values(37, "Sally", "Rooney", "");
+insert into autor values(38, "Carlos", "Peña", "");
+insert into autor values(39, "Sophie", "Cunningham", "");
+insert into autor values(40, "Yassmin ", "Abdel-Magied", "");
+insert into autor values(41, "Mario", "Guerra", "");
+insert into autor values(42, "Gabriel", "Zaid", "");
+insert into autor values(43, "Andrés", "Gomberoff", "");
+insert into autor values(44, "Jorge", "Cuevas", "");
+insert into autor values(45, "Valerio", "Massimo", "Manfredi");
+insert into autor values(46, "Thomas", "Mann", "");
+insert into autor values(47, "Javier", "Cercas", "");
+insert into autor values(48, "Vanessa", "Springora", "");
+insert into autor values(49, "Fiódor", "Dostoievski", "");
+insert into autor values(50, "Adrián", "Paenza", "");
+insert into autor values(51, "Danielle", "Steel", "");
+insert into autor values(52, "Charles", "Dickens", "");
+insert into autor values(53, "Fern", "Michaels", "");
+insert into autor values(54, "Eric", "Jerome", "Dickey");
+insert into autor values(55, "Laurence", "Minski", "");
+insert into autor values(56, "Daniel", "Defoe", "");
+insert into autor values(57, "Nora", "Roberts", "");
+insert into autor values(58, "Angel", "Payne", "");
+insert into autor values(59, "Ferns", "Michaels", "");
+insert into autor values(60, "Stephen", "Coonts", "");
+ 
 insert into formato values(1,'EPUB');
 insert into formato values(2,'MOBI');
 insert into formato values(3,'AZW');
@@ -460,12 +486,156 @@ insert into ebook values("54464cf7-a394-3682-abed-d2bbde82ff7f",27,"978607453646
 
 -- insert into ebook values("skuEbook", idDatos, "skuLibro", idFormato, "añoDig", precioEbook);
 
-
-insert into datos values(31, 2, "Misadventures at City Hall", 2020, "https://kbimages1-a.akamaihd.net/Images/60463135-66f3-4904-bcfc-10c7d29d082c/300/300/False/image.jpg", precio);
+insert into datos values(31, 2, "Misadventures at City Hall", 2020, "https://kbimages1-a.akamaihd.net/Images/60463135-66f3-4904-bcfc-10c7d29d082c/300/300/False/image.jpg", 552);
 insert into audiolibro values("9781799744917", 31, 356, "Savannah", "Richards", "");
 insert into redacta values(31, "9781799744917");
 insert into edita values(31, 11, 0);
 
+insert into datos values(32, 2, "No Exit", 2020, "https://kbimages1-a.akamaihd.net/Images/8422b28f-8827-4b2f-b562-656683917682/300/300/False/image.jpg", 331);
+insert into audiolibro values("9781543666168", 32, 480, "Sarah", "Naughton", "");
+insert into redacta values(32, "9781543666168");
+insert into edita values(32, 11, 0);
+
+insert into datos values(33, 2, "Customer Innovation", 2020, "https://kbimages1-a.akamaihd.net/Images/61c17903-0f3c-428f-85c1-78c8d94e498a/300/300/False/image.jpg", 552);
+insert into audiolibro values("9781978629219", 33, 494, "Teri", "Schnaubelt", "");
+insert into redacta values(33, "9781978629219");
+insert into edita values(33, 11, 0);
+
+insert into datos values(34, 2, "Black Lightning", 2020, "https://kbimages1-a.akamaihd.net/Images/37c43135-93e4-4104-8e82-b41322dced4b/300/300/False/image.jpg", 331);
+insert into audiolibro values("9781423355854", 34, 770, "Phil", "Gigante", "");
+insert into redacta values(34, "9781423355854");
+insert into edita values(34, 11, 0);
+
+insert into datos values(35, 2, "The Friends We Keep", 2020, "https://kbimages1-a.akamaihd.net/Images/0329a86d-1a9d-4966-982b-801640dcbbd2/300/300/False/image.jpg", 221);
+insert into audiolibro values("9781491504369", 35, 665, "Tanya", "Eby", "");
+insert into redacta values(35, "9781491504369");
+insert into edita values(35, 11, 0);
+
+insert into datos values(36, 1, "Rebelión", 2020, "https://kbimages1-a.akamaihd.net/Images/a0a25785-0f2f-409e-9091-360816277fc1/300/300/False/image.jpg", 109);
+insert into audiolibro values("9789562626026", 36, 78, "Sebastián", "Fernández", "Robles");
+insert into redacta values(36, "9789562626026");
+insert into edita values(36, 4, 0);
+
+insert into datos values(37, 1, "Gente normal", 2020, "https://kbimages1-a.akamaihd.net/Images/33378962-a764-4633-aec8-0d7e3828f9b4/300/300/False/image.jpg", 249);
+insert into audiolibro values("9788439738794", 37, 495, "Sara", "Heras", "");
+insert into redacta values(37, "9788439738794");
+insert into edita values(37, 4, 0);
+
+insert into datos values(38, 1, "La mentira noble", 2020, "https://kbimages1-a.akamaihd.net/Images/68da339a-6c9d-4682-8497-1187af34e4c8/300/300/False/image.jpg", 199);
+insert into audiolibro values("9789569635526", 38, 543, "Lucas", "Medina", "");
+insert into redacta values(38, "9789569635526");
+insert into edita values(38, 4, 0);
+
+insert into datos values(39, 2, "Fire Flood Plague", 2020, "https://kbimages1-a.akamaihd.net/Images/68d0d104-7b49-4979-81a6-6bc390ff20ab/300/300/False/image.jpg", 443);
+insert into audiolibro values("9781761042515", 39, 481, "Rupert", "Degas", "");
+insert into redacta values(39, "9781761042515");
+insert into edita values(39, 4, 0);
+
+insert into datos values(40, 2, "Listen, Layla", 2020, "https://kbimages1-a.akamaihd.net/Images/b6572583-4e96-4230-93d7-0138447f9f88/300/300/False/image.jpg", 364);
+insert into audiolibro values("9781761042812", 40, 120, "Amy", "Jones", "");
+insert into redacta values(40, "9781761042812");
+insert into edita values(40, 4, 0);
+
+insert into datos values(41, 1, "No te compliques", 2020, "https://kbimages1-a.akamaihd.net/Images/6105fc77-cb9c-4aad-849c-4b699935bf25/300/300/False/image.jpg", 229);
+insert into audiolibro values("9786073165945", 41, 360, "Mario", "Guerra", "");
+insert into redacta values(41, "9786073165945");
+insert into edita values(41, 4, 0);
+
+insert into datos values(42, 1, "Cronología del progreso", 2020, "https://kbimages1-a.akamaihd.net/Images/c3821a04-45e5-4dcb-b1bf-1076fc0f740e/300/300/False/image.jpg", 199);
+insert into audiolibro values("9786073180238", 42, 337, "Mario", "Díaz", "Mercado");
+insert into redacta values(42, "9786073180238");
+insert into edita values(42, 4, 0);
+
+insert into datos values(43, 1, "Einstein para perplejos", 2020, "https://kbimages1-a.akamaihd.net/Images/1124c1e5-e9de-48c4-81c0-1736bc8b643c/300/300/False/image.jpg", 95);
+insert into audiolibro values("9789569545979", 43, 475, "Wenceslao", "Corral", "");
+insert into redacta values(43, "9789569545979");
+insert into edita values(43, 4, 0);
+
+insert into datos values(44, 1, "Liderazgo quántico", 2020, "https://kbimages1-a.akamaihd.net/Images/f33375e3-4e49-42d0-9cdf-4797703fbbf1/300/300/False/image.jpg", 199);
+insert into audiolibro values("9786073194907", 44, 241, "Rod", "González", "");
+insert into redacta values(44, "9786073194907");
+insert into edita values(44, 4, 0);
+
+insert into datos values(45, 1, "Imperio", 2020, "https://kbimages1-a.akamaihd.net/Images/a5a6a6d7-9765-4b8f-800c-c5b1282e8151/300/300/False/image.jpg", 249);
+insert into audiolibro values("9788466348454", 45, 572, "Jordi", "Salas", "");
+insert into redacta values(45, "9788466348454");
+insert into edita values(45, 4, 0);
+
+insert into datos values(46, 1, "La muerte en Venecia", 2020, "https://kbimages1-a.akamaihd.net/Images/58e37340-73f2-4ca0-96dd-780097712d48/300/300/False/image.jpg", 229);
+insert into audiolibro values("9788466352581", 46, 197, "Pablo", "Derqui", "");
+insert into redacta values(46, "9788466352581");
+insert into edita values(46, 4, 0);
+
+insert into datos values(47, 1, "El impostor", 2020, "https://kbimages1-a.akamaihd.net/Images/854f364d-771a-484a-99f7-c33d0fc5c845/300/300/False/image.jpg", 279);
+insert into audiolibro values("9788439732754", 47, 865, "Sergio", "Capelo", "");
+insert into redacta values(47, "9788439732754");
+insert into edita values(47, 4, 0);
+
+insert into datos values(48, 1, "El consentimiento", 2020, "https://kbimages1-a.akamaihd.net/Images/8b2dc674-7b2e-4a7f-ad9f-69db35ac9a0d/300/300/False/image.jpg", 299);
+insert into audiolibro values("9788426409355", 48, 205, "Elsa", "Veiga", "");
+insert into redacta values(48, "9788426409355");
+insert into edita values(48, 4, 0);
+
+insert into datos values(49, 1, "Crimen y castigo", 2020, "https://kbimages1-a.akamaihd.net/Images/f80e1c90-7215-4103-b3f3-fcdd173238c9/300/300/False/image.jpg", 329);
+insert into audiolibro values("9788491054580", 49, 42, "Luis", "García", "Márquez");
+insert into redacta values(49, "9788491054580");
+insert into edita values(49, 4, 0);
+
+insert into datos values(50, 1, "Matemática... te encontré", 2020, "https://kbimages1-a.akamaihd.net/Images/392b1b75-baa5-47dd-9c58-05971ca5cce1/300/300/False/image.jpg", 159);
+insert into audiolibro values("9789500763615", 50, 460, "Adrián", "Paenza", "");
+insert into redacta values(50, "9789500763615");
+insert into edita values(50, 4, 0);
+
+insert into datos values(51, 2, "The award", 2020, "https://kbimages1-a.akamaihd.net/Images/c08bfe42-27fa-4622-b058-bc16b25f9239/300/300/False/image.jpg", 221);
+insert into audiolibro values("9781455834136", 51, 421, "Adam", "Verner", "");
+insert into redacta values(51, "9781455834136");
+insert into edita values(51,11, 0);
+
+insert into datos values(52, 2, "Great expectations", 2020, "https://kbimages1-a.akamaihd.net/Images/8969d5fb-0905-498a-a597-cd2f95579fe0/300/300/False/image.jpg", 221);
+insert into audiolibro values("9781491586174", 52, 1098, "Michael", "Page", "");
+insert into redacta values(52, "9781491586174");
+insert into edita values(52, 11, 0);
+
+insert into datos values(53, 2, "The jury", 2020, "https://kbimages1-a.akamaihd.net/Images/9e3693a9-a2bc-4f88-a0b4-90afa65858da/300/300/False/image.jpg", 442);
+insert into audiolibro values("9781597375665", 53, 424, "Laural", "Merlington", "");
+insert into redacta values(53, "9781597375665");
+insert into edita values(53, 11, 0);
+
+insert into datos values(54, 2, "Pleasure", 2020, "https://kbimages1-a.akamaihd.net/Images/83647147-60fa-4ae3-a5e0-007f4cb8ff78/300/300/False/image.jpg", 442);
+insert into audiolibro values("9781423345626", 54, 901, "Susan", "Spain", "");
+insert into redacta values(54, "9781423345626");
+insert into edita values(54, 11, 0);
+
+insert into datos values(55, 2, "Audio Branding", 2020, "https://kbimages1-a.akamaihd.net/Images/b7781d8d-93c7-43bc-824b-b05075a846ad/300/300/False/image.jpg", 552);
+insert into audiolibro values("9781721387731", 55, 477, "Jamie", "Renell", "");
+insert into redacta values(55, "9781721387731");
+insert into edita values(55, 11, 0);
+
+insert into datos values(56, 2, "Moll Flanders", 2020, "https://kbimages1-a.akamaihd.net/Images/4a966f7b-154b-40f0-9a93-ef1d4f8445c1/300/300/False/image.jpg", 221);
+insert into audiolibro values("9781491586822", 56, 805, "Laural", "Merligton", "");
+insert into redacta values(56, "9781491586822");
+insert into edita values(56,11, 0);
+
+insert into datos values(57, 2, "Irish Thoroughbred", 2020, "https://kbimages1-a.akamaihd.net/Images/719e8b59-084a-4c30-8908-ff6eb216200a/300/300/False/image.jpg", 221);
+insert into audiolibro values("9781501245077", 57, 294, "Emy", "Rubinate", "");
+insert into redacta values(57, "9781501245077");
+insert into edita values(57, 11, 0);
+
+insert into datos values(58, 2, "Sharks edge", 2020, "https://kbimages1-a.akamaihd.net/Images/63f049ed-edd3-4565-9039-9f6dc0a812a6/300/300/False/image.jpg", 552);
+insert into audiolibro values("9781799745006", 58, 493, "Erin", "Mallon", "");
+insert into redacta values(58, "9781799745006");
+insert into edita values(58, 11, 0);
+
+insert into datos values(59, 2, "The blossom sisters", 2020, "https://kbimages1-a.akamaihd.net/Images/b485e903-b25e-4214-a4d3-e0fcdc5986c9/300/300/False/image.jpg",331 );
+insert into audiolibro values("9781455812790", 59, 476, "Jeff ", "Crawford", "");
+insert into redacta values(59, "9781455812790");
+insert into edita values(59, 11, 0);
+
+insert into datos values(60,2, "Cuba", 2020, "https://kbimages1-a.akamaihd.net/Images/8a2c0667-0c0e-4c6a-9f66-848237c17398/300/300/False/image.jpg", 331);
+insert into audiolibro values("9781480515444", 60, 884, "Benjamin", "Darcie", "");
+insert into redacta values(60, "9781480515444");
+insert into edita values(60, 11, 0);
+ 
 /** 
 insert into datos values(idDatos, idIdioma, "titulo", 2020, "portada", precio);
 insert into audiolibro values("sku", idDatos, duracion, "narrador", "paterno", "materno");
@@ -475,6 +645,86 @@ insert into edita values(idDatos, idEditorial, pag);
 
 
 /*===============selects=============================================================*/
+
+/*1: consulta usando ||group by|| para mostrar el numero de libros 
+fisicos que tiene cada editorial*/
+select e.nombre as "Editorial", count(l.sku) as "Libros"
+from editorial e, libro l, datos d, edita ed where
+l.idDatos = d.idDatos and d.idDatos = ed.idDatos 
+and e.idEditorial = ed.idEditorial group by 1;
+
+/*2: consulta usando ||count|| para mostrar cuantos libros y 
+audiolibros existen cada uno de los idiomas*/
+select i.idioma as "Idioma", count(l.sku) as "Libro", 
+count(ad.sku) as "Audiolibros" from idioma i, datos d, audiolibro ad,
+libro l where i.idIdioma = d.idIdioma and d.idDatos = ad.idDatos
+and d.idDatos = l.idDatos group by 1;
+
+/*3: consulta usando ||sum|| para mostrar cuantos libros, paginas
+totales y precio total corresponden a cada editorial en años
+inferiores a 2019*/
+select edi.nombre as "Editorial", count(l.sku) as "Libros",
+sum(ed.numeroPaginas) as "Num pags total", sum(d.precio) as 
+"Precio total" from editorial edi, edita ed, datos d, libro l
+where edi.idEditorial = ed.idEditorial and ed.idDatos = d.idDatos
+and d.idDatos = l.idDatos and d.anio < 2019 group by 1;
+
+/*4: consulta usando ||count, sum y group by|| para saber cuantos
+libros tiene cada autor asi como las paginas totales*/
+select a.nombres "Autor", count(l.sku) as "Libros", 
+sum(ed.numeroPaginas) as "Pags totales" from libro l, autor a,
+escribe es, datos d, edita ed where a.idAutor = es.idAutor and
+es.sku = l.sku and l.idDatos = d.idDatos and d.idDatos = ed.idDatos
+group by 1;
+
+/*5: consulta para revisar los libros, disponibilidad, edicion de
+aquellos autores sin apellido materno*/
+select a.nombres as "Nombre autor", a.paterno as "Apellido",
+d.nombre as "Nombre libro", l.edicion as "Edicion", 
+l.disponibilidad as "Disponibilidad" from autor a, escribe es,
+libro l, datos d where a.idAutor = es.idAutor and es.sku = l.sku
+and l.idDatos = d.idDatos and a.materno = "" order by 1;
+
+/*6: consulta para ver los audiolibros, su duracion, el idioma y
+que editorial lo edito asi como el tel de esta ultima*/
+select d.nombre as "Audiolibro", ad.duracion as "Duracion",
+i.idioma as "Idioma", edi.nombre as "Editorial", 
+edi.telefono as "Tel." from editorial edi, edita ed, datos d, 
+idioma i, audiolibro ad where edi.idEditorial = ed.idEditorial
+and ed.idDatos = d.idDatos and d.idIdioma = i.idIdioma and
+d.idDatos = ad.idDatos order by Editorial;
+
+/*7: consulta para mostrar el nombre, formato y año de digitalizacion
+de los ebook creados a partir de los libros de los autores donde 
+su nombre inicie con A*/
+select d.nombre as "Ebook", f.tipoformato as "Formato",
+eb.anioDigitalizacion as "Anio digitalizacion" from formato f,
+ebook eb, libro l, datos d, escribe es, autor a where
+a.idAutor = es.idAutor and es.sku = l.sku and l.idDatos = d.idDatos
+and l.sku = eb.skuLibro and eb.idFormato = f.idFormato and
+a.nombres like "A%" order by 1;
+
+/*8: consulta para ver la portada de los libros asi como que
+editorial lo edito y el sitio web de esta ultima*/
+select d.nombre as "Libros", d.portada as "Portada",
+edi.nombre as "Editorial", edi.sitioweb as "WEB" from
+editorial edi, edita ed, datos d where edi.idEditorial = ed.idEditorial
+and ed.idDatos = d.idDatos; 
+
+/*9: consulta para ver el idioma, tipo de formato y el nombre de 
+libro*/
+select i.idioma as "Idioma", f.tipoformato as "Formato",
+d.nombre as "Nombre lib" from idioma i, datos d, libro l, ebook eb,
+formato f where i.idIdioma = d.idIdioma and d.idDatos = l.idDatos
+and l.sku = eb.skuLibro and eb.idFormato = f.idFormato;
+
+/*10: consulta para mostrar el nombre del audiolibro, asi como el 
+autor y el nombre del narrador para los audiolibros del año 2020*/
+select d.nombre as "Audiolibro", a.nombres as "Autor",
+ad.narradornombres as "Narrador" from autor a, redacta r,
+audiolibro ad, datos d where a.idAutor = r.idAutor and
+r.sku = ad.sku and ad.idDatos = d.idDatos and d.anio = 2020;
+
 
 /*===============views=============================================================*/
 
