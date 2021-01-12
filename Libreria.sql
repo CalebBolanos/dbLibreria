@@ -768,6 +768,7 @@ ebook eb, libro l where eb.skuLibro = l.sku and l.idDatos = d.idDatos
 and i.idIdioma = d.idIdioma and eb.anioDigitalizacion > 2010
 group by 1 order by 1;
 
+
 /*View para mostrar cuantos ebook y el numero da paginas totales
 existen en formato MOBI con precio menor a 200*/
 create view NumDigi as select f.tipoformato as "Formato",
@@ -811,16 +812,17 @@ delimiter |
 create procedure spIniciarSesion(in usr varchar(50), contra nvarchar(50))
 begin
 	declare existe, idCli int;
+    declare nom, pat, mat, corr nvarchar(50);
     declare msj nvarchar(200);
     
     set existe = (select count(*) from cliente where correo = usr and contrasena = md5(contra));
     if(existe = 1) then
-		set idCli = (select idCliente from cliente where correo = usr);
+		select idCliente, nombres, paterno, materno, correo into idCli, nom, pat, mat, corr from cliente where correo = usr;
         set msj = "ok";
     else
 		set msj = "Usuario o contraseña incorrecta";
 	end if;
-    select msj, idCli;
+    select msj, idCli, nom, pat, mat, corr;
 end; |
 delimiter ;
 
@@ -832,7 +834,7 @@ delimiter |
 create procedure spComprarEbook(in idCli int, idSku varchar(50), in cantidad int)
 begin
 	declare existe, existeCliente int;
-    declare precio, total decimal(10,2);
+    declare prec, total decimal(10,2);
     declare msj nvarchar(200);
     
     set existeCliente = (select count(*) from cliente where idCliente = idCli); 
@@ -840,8 +842,8 @@ begin
 		#para verificar si el ebook existe
 		set existe = (select count(*) from ebook where sku = idSku);
 		if(existe = 1) then
-			set precio = (select d.precio from ebook e, datos d where e.idDatos = d.idDatos and e.sku =idSku);
-			set total = precio * cantidad;
+            set prec = (select precio from ebook where sku = idSku);
+			set total = (prec * cantidad);
 			insert into compraEbook values(idCli, idSku, cantidad, total, CURDATE());
 			set msj = "Compra exitosa";
 		else
@@ -855,4 +857,4 @@ begin
 end; |
 delimiter ;
 
-call spComprarEbook(31, "9786073199445", 1);
+call spComprarEbook(31, "54464cf7-a394-3682-abed-d2bbde82ff7f", 3);
