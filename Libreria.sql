@@ -1,5 +1,4 @@
 #SET SQL_SAFE_UPDATES = 0; #por si lo llegamos a utilizar
--- hola lalo
 drop database if exists libreria;
 create database libreria;
 
@@ -105,31 +104,35 @@ create table redacta(
 );
 
 create table consulta(
+  idConsulta int not null,
   idCliente int not null,
   sku varchar(50) not null,
-  primary key (idCliente, sku),
+  fechaConsulta datetime not null,
+  primary key (idConsulta, idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references libro(sku)
 );
 
 create table compraAudiolibro(
+  idCompra int not null,
   idCliente int not null,
   sku varchar(50) not null,
   cantidad int not null,
   total decimal(10, 2) not null,
-  fechaCompra date not null,
-  primary key (idCliente, sku),
+  fechaCompra datetime not null,
+  primary key (idCompra, idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references audiolibro(sku)
 );
 
 create table compraEbook(
+  idCompra int not null,
   idCliente int not null,
   sku varchar(50) not null,
   cantidad int not null,
   total decimal(10, 2) not null,
-  fechaCompra date not null,
-  primary key (idCliente, sku),
+  fechaCompra datetime not null,
+  primary key (idCompra, idCliente, sku),
   foreign key (idCliente) references cliente(idCliente),
   foreign key (sku) references ebook(sku)
 );
@@ -454,11 +457,13 @@ insert into libro values("9786079043230", 30, 10, 50);
 insert into escribe values(30, "9786079043230");
 insert into edita values(30, 10, 96);
 
+
 /*
 insert into datos values(idDatos, idIdioma, "titulo", 2020, "portada", precio);
 insert into libro values("sku", idDatos, idEditorial, disp);
 insert into escribe values(idAutor, "sku");
 insert into edita values(idDatos, idEditorial, pag);
+
 */
 
 insert into ebook values("70bf50cb-5ec7-4b29-8491-ba720617c79d", 1, "9786073199445", 1, "2012", 79);
@@ -785,6 +790,65 @@ select e.nombre as "Editorial", count(l.sku) as "Libros"
 from editorial e, libro l, datos d, edita ed where
 l.idDatos = d.idDatos and d.idDatos = ed.idDatos 
 and e.idEditorial = ed.idEditorial group by 1;
+
+drop view if exists vwlibros;
+create view vwlibros as select l.sku as "sku", 1 as "tipoProducto",
+d.nombre as "Nombre", concat(a.nombres, " ", a.paterno, " ", a.materno) as "Autor", d.portada as "Portada", 
+edi.nombre as "Editorial", d.precio as "Precio", d.anio as "Anio", i.idioma as "Idioma", l.edicion as "Edicion", 
+ed.numeroPaginas as "Paginas", l.disponibilidad as "Disponibilidad"
+from datos d, libro l, escribe es, autor a, edita ed, editorial edi, idioma i 
+where edi.idEditorial = ed.idEditorial 
+and ed.idDatos = d.idDatos and d.idDatos = l.idDatos and l.sku = es.sku 
+and es.idAutor = a.idAutor and d.idIdioma = i.idIdioma order by 3;
+select * from vwlibros;
+
+drop view if exists vwebook;
+create view vwebook as select eb.sku as "sku", 2 as "tipoProducto",
+d.nombre as "Nombre", concat(a.nombres, " ", a.paterno, " ", a.materno) as "Autor",
+d.portada as "Portada", edi.nombre as "Editorial", eb.precio as "Precio", d.anio as "Anio", 
+i.idioma as "Idioma", eb.anioDigitalizacion as "AnioDigitalizacion", f.tipoformato as "Formato"
+from datos d, libro l, ebook eb, escribe es, autor a, edita ed, editorial edi, formato f, idioma i  
+where edi.idEditorial = ed.idEditorial and ed.idDatos = d.idDatos 
+and d.idDatos = l.idDatos and l.sku = es.sku and es.idAutor = a.idAutor 
+and l.sku = eb.skuLibro and eb.idFormato = f.idFormato and d.idIdioma = i.idIdioma order by 3;
+select * from vwebook;
+
+drop view if exists vwAudiolibro;
+create view vwAudiolibro as select ad.sku as "sku", 3 as "tipoProducto",
+d.nombre as "Nombre", concat(a.nombres, " ", a.paterno, " ", a.materno) as "Autor", 
+d.portada as "Portada", edi.nombre as "Editorial", d.precio as "Precio", d.anio as "Anio", i.idioma as "Idioma",
+ad.duracion as "Duracion", concat(ad.narradornombres, " ", ad.narradorpaterno, " ", ad.narradormaterno) as "Narrador"  
+from  datos d, audiolibro ad, autor a, redacta r, edita ed, editorial edi, idioma i 
+where edi.idEditorial = ed.idEditorial 
+and ed.idDatos = d.idDatos and d.idDatos = ad.idDatos and ad.sku = r.sku 
+and r.idAutor = a.idAutor and d.idIdioma = i.idIdioma order by 3;
+select * from vwAudiolibro;
+
+drop view if exists vwproductos;
+create view vwproductos as
+select sku, tipoProducto, Nombre, Autor, Portada, Editorial, Precio, Anio, Idioma from vwlibros 
+union 
+select sku, tipoProducto, Nombre, Autor, Portada, Editorial, Precio, Anio, Idioma from vwebook 
+union 
+select sku, tipoProducto, Nombre, Autor, Portada, Editorial, Precio, Anio, Idioma from vwAudiolibro 
+order by 3;
+
+select * from vwproductos;  
+
+drop view if exists vwCompraEbook;
+create view vwCompraEbook as select ce.idCompra, ce.idCliente, ce.sku, 
+d.nombre, e.precio, ce.cantidad, ce.total, ce.fechaCompra 
+from compraEbook ce, ebook e, datos d
+where ce.sku = e.sku and e.idDatos = d.idDatos;
+select * from vwCompraEbook;
+
+drop view if exists vwCompraAudiolibro;
+create view vwCompraAudiolibro as select ca.idCompra, ca.idCliente, ca.sku, 
+d.nombre, d.precio, ca.cantidad, ca.total, ca.fechaCompra 
+from compraAudiolibro ca, audiolibro a, datos d
+where ca.sku = a.sku and a.idDatos = d.idDatos;
+select * from vwCompraAudiolibro;
+
 /*===============stored procedures=================================================*/
 drop procedure if exists spRegistrarCliente;
 delimiter |
@@ -833,7 +897,7 @@ drop procedure if exists spComprarEbook;
 delimiter |
 create procedure spComprarEbook(in idCli int, idSku varchar(50), in cantidad int)
 begin
-	declare existe, existeCliente int;
+	declare existe, existeCliente, idComp int;
     declare prec, total decimal(10,2);
     declare msj nvarchar(200);
     
@@ -844,7 +908,8 @@ begin
 		if(existe = 1) then
             set prec = (select precio from ebook where sku = idSku);
 			set total = (prec * cantidad);
-			insert into compraEbook values(idCli, idSku, cantidad, total, CURDATE());
+			set idComp = (select ifnull(max(idCompra),0)+1 from compraEbook);
+			insert into compraEbook values(idComp, idCli, idSku, cantidad, total, NOW());
 			set msj = "Compra exitosa";
 		else
 			set msj = "El ebook que quieres comprar no existe";
@@ -857,4 +922,71 @@ begin
 end; |
 delimiter ;
 
-call spComprarEbook(31, "54464cf7-a394-3682-abed-d2bbde82ff7f", 3);
+call spComprarEbook(31, "8b4b608d-d2ae-4557-9bbc-48416a44caa2", 3);
+
+
+#sp para calcular la compra de audiolibros ebooks en especifico
+drop procedure if exists spComprarAudiolibro;
+delimiter |
+create procedure spComprarAudiolibro(in idCli int, idSku varchar(50), in cantidad int)
+begin
+	declare existe, existeCliente, idComp, idDat int;
+    declare prec, total decimal(10,2);
+    declare msj nvarchar(200);
+    
+    set existeCliente = (select count(*) from cliente where idCliente = idCli); 
+    if(existeCliente = 1) then
+		#para verificar si el ebook existe
+		set existe = (select count(*) from audiolibro where sku = idSku);
+		if(existe = 1) then
+			set idDat = (select idDatos from audiolibro where sku = idSku);
+            set prec = (select precio from datos where idDatos = idDat);
+			set total = (prec * cantidad);
+			set idComp = (select ifnull(max(idCompra),0)+1 from compraAudiolibro);
+			insert into compraAudiolibro values(idComp, idCli, idSku, cantidad, total, NOW());
+			set msj = "Compra exitosa";
+		else
+			set msj = "El audiolibro que quieres comprar no existe";
+		end if;
+    else
+		set msj = "El cliente no existe";
+    end if;
+
+    select msj, idCli;
+end; |
+delimiter ;
+call spComprarAudiolibro(31, "9781423345626", 1);
+
+
+drop procedure if exists spBusqueda;
+delimiter |
+create procedure spBusqueda(in productoABuscar int, in filtro nvarchar(50), in busqueda nvarchar(200))
+begin
+	case
+		when productoABuscar = 0 then 
+			select * from vwproductos where case filtro
+				when 'Titulo' then LOWER(Nombre)
+                when 'Autor' then LOWER(Autor)
+                when 'Editorial' then LOWER(Editorial)
+                when 'Año' then Anio
+                when 'Idioma' then Idioma
+                when 'Precio' then Precio
+                else null
+                end
+				like concat("%", busqueda, "%");
+        when productoABuscar >= 1 then 
+			select * from vwproductos where tipoProducto = productoABuscar and case filtro
+				when 'Titulo' then LOWER(Nombre)
+                when 'Autor' then LOWER(Autor)
+                when 'Editorial' then LOWER(Editorial)
+                when 'Año' then Anio
+                when 'Idioma' then Idioma
+                when 'Precio' then Precio
+                else null
+                end
+				like concat("%", busqueda, "%");
+	end case;
+end; |
+delimiter ;
+
+call spBusqueda(0, "Precio", "199");
