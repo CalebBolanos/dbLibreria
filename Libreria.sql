@@ -989,4 +989,58 @@ begin
 end; |
 delimiter ;
 
-call spBusqueda(0, "Precio", "199");
+-- call spBusqueda(0, "Precio", "199");
+
+
+-- insert into cliente values(33,'Borrar','Borrar','Borrar','borrar@gmail.com', md5('borrar'));
+
+drop procedure if exists spBr;
+delimiter |
+create procedure spBr(in idBr int)
+begin
+	declare existe int;
+    declare msj varchar(200);
+    
+    set existe = (select count(*) from cliente where idCliente=idBr);
+	if(existe = 1)then
+		DELETE from compraEbook where idCliente = idBr;
+        DELETE from consulta where idCliente = idBr;
+        DELETE from compraAudiolibro where idCliente = idBr;
+        DELETE from cliente where idCliente = idBr;
+        set msj="Cliente eliminado";
+	else
+		set msj="El usuario no existe";
+	end if;
+    select msj;
+end; |
+delimiter ;
+
+-- call spBr(33);
+
+drop procedure if exists Cambiocon;
+delimiter |
+create procedure Cambiocon(in idCli int,viejacon nvarchar(50),nuevacon nvarchar(50))
+begin
+declare msj varchar(200);
+declare existeCliente int;
+
+set existeCliente = (select count(*) from cliente where idCliente = idCli); 
+if(existeCliente = 1) then
+
+if(md5(viejacon) = (select contrasena from cliente where idCliente = idCli))then
+update cliente set contrasena = md5(nuevacon) where idCliente = idCli;
+-- update contrasena set contrasena=md5(nuevacon);
+set msj="Cambio de contrasena correcto";
+else 
+set msj="contrasena incorrecta";
+end if;
+else 
+set msj="Cliente no esta registrado";
+end if;
+select msj;
+end; |
+delimiter ;
+
+-- call Cambiocon(30,"si","no");
+
+select * from cliente;
